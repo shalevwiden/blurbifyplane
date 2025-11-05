@@ -3,23 +3,19 @@ const plane = document.querySelector(".plane");
 const buttonsdiv = document.querySelector(".buttonsdiv");
 
 const shifthuebutton = buttonsdiv.querySelector("#shifthuebutton");
-const gradient2button = buttonsdiv.querySelector("#gradient2button");
-const gradient3button = buttonsdiv.querySelector("#gradient3button");
-
-const applyGradient = (newClass) => {
-  plane.classList.add(newClass); // apply the new one
-};
+const contrastbutton = buttonsdiv.querySelector("#contrastbutton");
+const greyscalebutton = buttonsdiv.querySelector("#greyscalebutton");
 
 shifthuebutton.addEventListener("click", () => {
   console.log("applying hue shit");
   plane.classList.toggle("hueshiftclass");
 });
-gradient2button.addEventListener("click", () => {
-  console.log("trying gradient 2");
-  applyGradient("gradient2class");
+contrastbutton.addEventListener("click", () => {
+  console.log("contrast stuff now");
+  plane.classList.toggle("contrastclass");
 });
 
-gradient3button.addEventListener("click", () => {
-  console.log("trying gradient 3");
-  applyGradient("gradient3class");
+greyscalebutton.addEventListener("click", () => {
+  console.log("adding greyscale stuff");
+  plane.classList.toggle("greyscaleclass");
 });
