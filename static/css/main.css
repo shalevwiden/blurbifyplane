@@ -95,24 +95,36 @@ footer.gradientfooter {
 }
 
 .masked {
+  position: relative;
   width: 400px;
   height: 400px;
-  mask-image: url("mask.png");
-  -webkit-mask-image: url("mask.png");
-  mask-size: cover;
-  -webkit-mask-size: cover;
-  mask-repeat: no-repeat;
-  -webkit-mask-repeat: no-repeat;
-  mask-position: center;
-  -webkit-mask-position: center;
   overflow: hidden;
+  /* Apply the mask */
+  -webkit-mask-image: url("images/defaultflying.png");
+  mask-image: url("images/defaultflying.png");
+  border: 3px solid red;
+  background: url("images/defaultflying.png") center/cover no-repeat;
 }
 
-.masked img {
+/* everything inside should respect the mask */
+.masked * {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  display: block;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(45deg, red, blue);
+  mix-blend-mode: multiply; /* or overlay, screen, color, etc. */
+  opacity: 0.8; /* control how strong the paint effect looks */
+  width: 400px;
+  height: 400px;
+  top: 0;
+  left: 0;
 }
 
 :root {
@@ -213,13 +225,12 @@ body #heading {
   display: inline-block;
   width: 100%;
   background: linear-gradient(345deg, #425d84 0%, red 10%, #ff9d60 49%, #076505 95%);
-  background: url("../../images/towernobg.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   /* The gradient that will show through the visible parts */
-  -webkit-mask-image: url("../../images/towernobg.png");
-  mask-image: url("../../images/towernobg.png");
+  -webkit-mask-image: url("../../images/defaultflying.png");
+  mask-image: url("../../images/defaultflying.png");
   mask-mode: alpha;
   -webkit-mask-repeat: no-repeat;
           mask-repeat: no-repeat;
@@ -227,6 +238,25 @@ body #heading {
           mask-size: contain;
   -webkit-mask-position: center;
           mask-position: center;
+  background: linear-gradient(345deg, #425d84 0%, red 10%, #ff9d60 49%, #076505 95%);
+  background-size: 200% 100%; /* gradient is twice as wide as the element */
+  background-position: left center; /* show only the left half */
+}
+.gradientcontainer .paint-layer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, red, blue);
+  background-size: 200% 100%;
+  background-position: 0% center;
+  animation: paintMove 8s linear infinite;
+}
+@keyframes paintMove {
+  from {
+    background-position: 0% center;
+  }
+  to {
+    background-position: 100% center;
+  }
 }
 
 .buttonsdiv {
@@ -240,6 +270,7 @@ body #heading {
   border-radius: 26px;
   width: 80%;
   height: 200px;
+  z-index: 10;
 }
 .buttonsdiv button {
   padding: 10px 20px;
@@ -249,10 +280,10 @@ body #heading {
   background-color: #007bff;
   border: none;
   border-radius: 20px;
-  cursor: pointer;
   transition: background-color 0.2s ease, transform 0.2s ease;
 }
 .buttonsdiv button:hover {
+  cursor: pointer;
   background-color: #0056b3;
   transform: translateY(-2px);
 }
@@ -292,4 +323,154 @@ body #heading {
 .aboutdiv .links i:hover {
   transform: scale(1.2);
   color: #0a66c2; /* LinkedIn blue, or your theme */
+}
+
+#editedimage2 {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  /* Mask = your cutout PNG */
+  -webkit-mask-image: url("../../images/defaultflying.png"); /* use your $nobgimage variable here */
+  mask-image: url("../../images/defaultflying.png");
+  mask-mode: alpha;
+  -webkit-mask-size: contain;
+          mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+          mask-position: center;
+  /* Transparent background (so only the circle shows through) */
+  background: transparent;
+  overflow: hidden; /* just in case */
+}
+#editedimage2 .gradient-circle {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ff7b00 0%, #00ff66 50%, transparent 80%);
+  pointer-events: none; /* so you can drag through it */
+  transition: transform 0.05s linear;
+  top: 0;
+  right: 0;
+}
+
+#editedimage2 {
+  position: relative;
+  width: 1000px;
+  height: 1000px;
+  overflow: hidden;
+  /* Apply mask so both the image and the overlay are clipped */
+  -webkit-mask-image: url("../../images/defaultflying.png");
+  mask-image: url("../../images/defaultflying.png");
+  mask-mode: alpha;
+  -webkit-mask-size: contain;
+          mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+          mask-position: center;
+  margin: -200px 0px;
+  /* Optional: to see the bounding area */
+}
+#editedimage2 .plane {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+  display: block;
+  filter: brightness(113%) contrast(1.3) saturate(94%) hue-rotate(116deg);
+}
+@keyframes rotatehue {
+  0% {
+    filter: brightness(113%) contrast(1.3) saturate(94%) hue-rotate(0deg);
+  }
+  100% {
+    filter: brightness(113%) contrast(1.3) saturate(94%) hue-rotate(360deg);
+  }
+}
+#editedimage2 .hueshiftclass {
+  animation: rotatehue 5s linear infinite;
+}
+@keyframes contrastshift {
+  0% {
+    filter: brightness(113%) contrast(1.3) saturate(94%) hue-rotate(0deg);
+  }
+  50% {
+    filter: brightness(113%) contrast(101) saturate(94%) hue-rotate(0deg);
+  }
+  100% {
+    filter: brightness(113%) contrast(1.3) saturate(94%) hue-rotate(360deg);
+  }
+}
+#editedimage2 .contrastclass {
+  animation: rotatehue 10s linear ease;
+}
+#editedimage2 .gradient-circle {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #08740e 0%, #6db8ff 100%); /* remove transparent stop */
+  mix-blend-mode: overlay;
+  opacity: 0.5; /* make it fully visible */
+  pointer-events: none;
+  transition: transform 0.05s linear;
+  top: 50%;
+  left: 50%;
+}
+#editedimage2 .bluecircle {
+  border-radius: 50%;
+  width: 200px;
+  aspect-ratio: 1/1;
+  background: linear-gradient(red, blue, purple);
+  opacity: 0.2;
+  position: absolute;
+  top: 435px;
+  left: 120px;
+}
+#editedimage2 .orange-circle {
+  border-radius: 50%;
+  width: 272px;
+  height: 105px;
+  background: linear-gradient(90deg, #425d84, #605bf7, #60c4ff);
+  transform: rotate(192deg);
+  opacity: 0.5;
+  position: absolute;
+  top: 360px;
+  left: 280px;
+}
+#editedimage2 .circle3 {
+  border-radius: 51%;
+  width: 222px;
+  height: 474px;
+  background: linear-gradient(90deg, #99b1d3, #f75bc0, #60ffba);
+  opacity: 0.5;
+  position: absolute;
+  top: 145px;
+  left: 710px;
+  transform: rotate(266deg);
+}
+#editedimage2 #heading {
+  position: relative;
+  z-index: 3;
+  background: linear-gradient(90deg, #425d84, #605bf7, #60c4ff);
+  top: -739px;
+  right: -608px;
+  transform: rotate(-6deg);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+  font-size: 80px;
+  /* standard gradient */
+  -webkit-background-clip: text; /* show background only inside text */
+  -webkit-text-fill-color: transparent; /* make text itself transparent */
+  font-weight: bold;
+}
+
+.gradient-circle,
+.bluecircle,
+.orange-circle,
+.circle3,
+.plane {
+  pointer-events: none; /* allows clicks to pass through */
 }/*# sourceMappingURL=main.css.map */
