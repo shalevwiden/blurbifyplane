@@ -62,7 +62,7 @@ body {
       }
     }
   }
-  #heading {
+  #textheading {
     margin: 50px 0px;
   }
 }
@@ -369,7 +369,7 @@ body {
     position: relative;
     z-index: 3;
     background: linear-gradient(90deg, #425d84, #605bf7, #60c4ff);
-    top: -778px;
+    top: -731px;
     right: -608px;
     transform: rotate(-11deg);
     -webkit-background-clip: text;
@@ -389,4 +389,29 @@ body {
 .circle3,
 .plane {
   pointer-events: none; /* allows clicks to pass through */
+}
+// now heading and plane
+.headingandplane {
+  @include flexcol;
+  margin: 100px 0;
+  .heading2 {
+    z-index: 3;
+    background: linear-gradient(90deg, #425d84, #605bf7, #60c4ff);
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+    font-size: 200px;
+
+    /* standard gradient */
+    -webkit-background-clip: text; /* show background only inside text */
+    -webkit-text-fill-color: transparent; /* make text itself transparent */
+    font-weight: bold;
+  }
+  #plane2 {
+    margin-top: -220px;
+    width: 795px;
+    height: auto;
+    z-index: 3;
+  }
 }
