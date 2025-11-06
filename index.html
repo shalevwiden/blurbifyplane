@@ -56,11 +56,14 @@
         <button id="shifthuebutton">Hue Shift Animation</button>
         <button id="contrastbutton">Contrast Animation</button>
         <button id="greyscalebutton">Greyscale Animation</button>
-        <button id="save">Save Plane</button>
+        <button id="saveplane">Save Plane as png</button>
       </div>
       <h1 id="heading">Blurbify Plane Gradient Animation (looping):</h1>
       <div class="gradientcontainer">
-        <div id="editedimage"><div class="paint-layer"></div></div>
+        <div id="editedimage">
+          <!-- this has the plane it it -->
+          <div class="paint-layer"></div>
+        </div>
         <!-- <img src="images/defaultflying.png" alt="" srcset="" /> -->
       </div>
       <footer class="gradientfooter">
@@ -70,5 +73,24 @@
     <script src="static/js/saveimage.js"></script>
     <script src="static/js/aspect-ratio.js"></script>
     <script src="static/js/animations.js"></script>
+    <!-- saving images -->
+    <script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.min.js"></script>
+    <script>
+      document.getElementById("saveplane").addEventListener("click", () => {
+        const element = document.getElementById("editedimage2");
+
+        htmlToImage
+          .toPng(element, { backgroundColor: null })
+          .then((dataUrl) => {
+            const link = document.createElement("a");
+            link.download = "blurbifyplane.png";
+            link.href = dataUrl;
+            link.click();
+          })
+          .catch((error) => {
+            console.error("Error saving image:", error);
+          });
+      });
+    </script>
   </body>
 </html>

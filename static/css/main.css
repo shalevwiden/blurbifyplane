@@ -245,17 +245,17 @@ body #heading {
 .gradientcontainer .paint-layer {
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, red, blue);
+  background: linear-gradient(90deg, rgb(226, 54, 7), rgb(30, 151, 89), rgb(35, 135, 243));
   background-size: 200% 100%;
   background-position: 0% center;
-  animation: paintMove 8s linear infinite;
+  animation: paintMove 10s linear infinite;
 }
 @keyframes paintMove {
   from {
     background-position: 0% center;
   }
   to {
-    background-position: 100% center;
+    background-position: 210% center;
   }
 }
 
@@ -426,11 +426,11 @@ body #heading {
   border-radius: 50%;
   background: radial-gradient(circle, #08740e 0%, #6db8ff 100%); /* remove transparent stop */
   mix-blend-mode: overlay;
-  opacity: 0.5; /* make it fully visible */
+  opacity: 0.8; /* make it fully visible */
   pointer-events: none;
   transition: transform 0.05s linear;
   top: 50%;
-  left: 50%;
+  left: 48%;
 }
 #editedimage2 .bluecircle {
   border-radius: 50%;
