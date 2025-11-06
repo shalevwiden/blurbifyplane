@@ -144,10 +144,10 @@ body {
 .buttonsdiv {
   @include flexcol;
   border: 5px solid blue;
-  padding: 30px;
+  padding: 50px 0;
   border-radius: 26px;
   width: 80%;
-  height: 200px;
+  height: auto;
   z-index: 10;
 
   button {
@@ -364,9 +364,9 @@ body {
     position: relative;
     z-index: 3;
     background: linear-gradient(90deg, #425d84, #605bf7, #60c4ff);
-    top: -739px;
+    top: -778px;
     right: -608px;
-    transform: rotate(-6deg);
+    transform: rotate(-11deg);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: bold;
