@@ -81,11 +81,13 @@
     <!-- saving images -->
     <script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.min.js"></script>
     <script>
-      document.getElementById("saveplane").addEventListener("click", () => {
-        const element = document.getElementById("editedimage2");
+      saveplane = document.getElementById("saveplane");
+
+      saveplane.addEventListener("click", () => {
+        const plane_element = document.getElementById("editedimage2");
 
         htmlToImage
-          .toPng(element, { backgroundColor: null })
+          .toPng(plane_element, { backgroundColor: null })
           .then((dataUrl) => {
             const link = document.createElement("a");
             link.download = "blurbifyplane.png";
